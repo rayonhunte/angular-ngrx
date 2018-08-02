@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Course} from "../model/course";
-import {Observable} from "rxjs";
-import {map} from "rxjs/operators";
-import {CoursesService} from "../services/courses.service";
+import {Course} from '../model/course';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {CoursesService} from '../services/courses.service';
+import { Store } from '../../../../node_modules/@ngrx/store';
+import * as fromAppStore from '../../reducers';
 
 @Component({
     selector: 'home',
@@ -17,8 +19,7 @@ export class HomeComponent implements OnInit {
 
     advancedCourses$: Observable<Course[]>;
 
-    constructor(private coursesService: CoursesService) {
-
+    constructor(private coursesService: CoursesService, private store: Store<fromAppStore.State>) {
     }
 
     ngOnInit() {
