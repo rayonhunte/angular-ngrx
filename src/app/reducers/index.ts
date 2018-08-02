@@ -8,10 +8,9 @@ import {
 import { environment } from '../../environments/environment';
 import { User } from '../model/user.model';
 import { AuthActionTypes } from '../auth/auth.actions';
-import { userInfo } from 'os';
+
 
 export interface AppState  {
-
 }
 
 

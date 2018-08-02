@@ -4,6 +4,8 @@ import {Observable} from "rxjs";
 import {AppState} from './reducers';
 import {Logout} from './auth/auth.actions';
 import { map } from '../../node_modules/rxjs/operators';
+import {isLoggedIn, isLoggedOut} from './auth/auth.selectors';
+import { Router } from '../../node_modules/@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +15,7 @@ export class AppComponent implements OnInit {
 
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
-    constructor(private store: Store<AppState>) {
+    constructor(private store: Store<AppState>, private router: Router) {
 
     }
 
@@ -21,12 +23,12 @@ export class AppComponent implements OnInit {
 
       this.isLoggedIn$ = this.store
       .pipe(
-        map(state => state.auth.loggedIn)
+        select(isLoggedIn)
       );
 
       this.isLoggedOut$ = this.store
       .pipe(
-        map(state => !state.auth.loggedIn)
+       select(isLoggedOut),
       );
     }
 
